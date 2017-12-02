@@ -6,7 +6,7 @@ def siteUrl = 'https://github.com/595171796/rapiddevelopment'   // 项目的主�
 def gitUrl = 'https://github.com/595171796/rapiddevelopment.git'   // Git仓库的url
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
-group = "com.rd_components" // Maven Group ID for the artifact，一般填你唯一的包名
+group = "com.zdkdream" // Maven Group ID for the artifact，一般填你唯一的包名
 version = "1.0.0" //发布版本号
 android {
     compileSdkVersion 26
@@ -50,7 +50,6 @@ bintray {
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ['Apache-2.0']//不能随便写，只能是仓库创建时选择的license type
-        userOrg = 'zdkdream' //自己创建的organization名称
         publish = true // 是否是公开项目，公开别人可以引用
 
         version {
@@ -84,9 +83,9 @@ install {
                 }
                 developers {
                     developer {
-                        id '595171796'        //填写bintray或者github的用户名
-                        name 'TaoChen'         //姓名
-                        email 'zhugekongming479@gmail.com'//邮箱
+                        id 'chenkongming'        //填写bintray或者github的用户名
+                        name 'ChenTao'         //姓名
+                        email 'chenkongming479@gmail.com'//邮箱
                     }
                 }
                 scm {
