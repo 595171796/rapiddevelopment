@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rapiddevelopment.iml" filepath="$PROJECT_DIR$/rapiddevelopment.iml" />
+      <module fileurl="file://D:\Android_Pratice\rapiddevelopment\app\app.iml" filepath="D:\Android_Pratice\rapiddevelopment\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/rapiddevelopment.iml" filepath="$PROJECT_DIR$/.idea/rapiddevelopment.iml" />
+      <module fileurl="file://D:\Android_Pratice\rapiddevelopment\rapiddevelopment.iml" filepath="D:\Android_Pratice\rapiddevelopment\rapiddevelopment.iml" />
       <module fileurl="file://$PROJECT_DIR$/rd_components/rd_components.iml" filepath="$PROJECT_DIR$/rd_components/rd_components.iml" />
+      <module fileurl="file://D:\Android_Pratice\rapiddevelopment\rd_components\rd_components.iml" filepath="D:\Android_Pratice\rapiddevelopment\rd_components\rd_components.iml" />
     </modules>
   </component>
 </project>
