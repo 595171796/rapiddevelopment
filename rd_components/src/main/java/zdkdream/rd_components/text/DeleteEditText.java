@@ -1,4 +1,4 @@
-package zdkdream.rd_components.edittext;
+package zdkdream.rd_components.text;
 
 import android.content.Context;
 import android.content.res.TypedArray;
