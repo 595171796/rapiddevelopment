@@ -1,5 +1,8 @@
 package zdkdream.rd_components;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.widget.Button;
 
 /**
@@ -35,5 +38,16 @@ public class AndroidTools {
         };
         timer.start();
     }
+
+
+    /**
+     * 拨打电话
+     */
+    public static void callPhone(Context context, String phone) {
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
 
 }
