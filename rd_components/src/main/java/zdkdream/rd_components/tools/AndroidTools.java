@@ -1,4 +1,4 @@
-package zdkdream.rd_components;
+package zdkdream.rd_components.tools;
 
 import android.content.Context;
 import android.content.Intent;

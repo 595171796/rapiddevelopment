@@ -1,8 +1,11 @@
 package zdkdream.rd_components.text;
 
+import android.text.Editable;
+import android.text.InputFilter;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextWatcher;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
@@ -10,6 +13,10 @@ import android.text.style.StrikethroughSpan;
 import android.text.style.SubscriptSpan;
 import android.text.style.SuperscriptSpan;
 import android.text.style.UnderlineSpan;
+import android.widget.EditText;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author CT on 2017/12/13.
@@ -416,4 +423,108 @@ public class TextTool {
         return new String(chars);
     }
 
+
+    /*---------------------------处理非法字符--------------------------------*/
+
+
+    static class LimitString implements TextWatcher {
+        /**
+         * et
+         */
+        private EditText et = null;
+        /**
+         * 筛选条件
+         */
+        private String regex;
+        /**
+         * 默认的筛选条件(正则:只能输入中文)
+         */
+        private String DEFAULT_REGEX = "[^\u4E00-\u9FA5]";
+        private final static String C_REGEX = "[^\u4E00-\u9FA5]";
+        private final static String CEN_REGEX = "[^a-zA-Z0-9\u4E00-\u9FA5_]";
+        private final static String EN_REGEX = "[^a-zA-Z0-9]";
+
+        /**
+         * 构造方法
+         *
+         * @param et
+         */
+        public LimitString(EditText et) {
+            this.et = et;
+            this.regex = DEFAULT_REGEX;
+        }
+
+        /**
+         * 构造方法
+         *
+         * @param et    et
+         * @param regex 筛选条件
+         */
+        public LimitString(EditText et, String regex) {
+            this.et = et;
+            this.regex = regex;
+        }
+
+        public LimitString setFormat(Format format) {
+            switch (format) {
+                case C:
+                    DEFAULT_REGEX = C_REGEX;
+
+                    break;
+                case CEN:
+                    DEFAULT_REGEX = CEN_REGEX;
+
+                    break;
+                case EN:
+                    DEFAULT_REGEX = EN_REGEX;
+                    break;
+                default:
+                    break;
+            }
+            return this;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            String str = s.toString();
+            String inputStr = clearLimitStr(regex, str);
+            et.removeTextChangedListener(this);
+            // et.setText方法可能会引起键盘变化,所以用editable.replace来显示内容
+            s.replace(0, s.length(), inputStr.trim());
+            et.addTextChangedListener(this);
+        }
+
+        /**
+         * 清除不符合条件的内容
+         *
+         * @param regex
+         * @return
+         */
+        private String clearLimitStr(String regex, String str) {
+            return str.replaceAll(regex, "");
+        }
+
+        public enum Format {
+            /**
+             * C 中文
+             * CEN 中文英文数字
+             * EN 英文和数字
+             */
+            C, EN, CEN
+        }
+    }
+
 }
+
+
+

@@ -1,4 +1,4 @@
-package zdkdream.rd_components;
+package zdkdream.rd_components.tools;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -18,9 +18,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import zdkdream.rd_components.R;
+
 /**
  * @author CT on 2017/12/7.
  * @email 595171796@qq.com
+ * Toast 辅助类
  */
 
 public class ToastTool {
