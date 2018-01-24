@@ -6,6 +6,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 
 import zdkdream.rd_components.R;
@@ -17,6 +18,7 @@ import zdkdream.rd_components.R;
  * 带删除的EditText
  */
 
+
 public class DeleteEditText extends AppCompatEditText {
 
     /**
@@ -27,7 +29,16 @@ public class DeleteEditText extends AppCompatEditText {
     //删除图标
     private Drawable ic_delete;
     //删除图片起点(X,Y)、删除图标宽、高(PX)
-    private int delete_x, delete_y, delete_width, delete_height;
+    private int delete_x, delete_y;
+
+    /**
+     * onlyShow 是否一直显示
+     */
+    private boolean visible, onlyShow;
+
+    private boolean isClick = false;
+
+    private ClickDrawable clickDreawable;
 
     public DeleteEditText(Context context) {
         super(context);
@@ -36,35 +47,46 @@ public class DeleteEditText extends AppCompatEditText {
     public DeleteEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
+
     }
 
     /**
      * 初始化属性
      */
     private void init(Context context, AttributeSet attrs) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.deleteEditText);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.DeleteEditText);
         /**
          * 初始化删除图标
          */
-        ic_deleteResID = typedArray.getResourceId(R.styleable.deleteEditText_ic_delete, R.drawable.delete);
+        ic_deleteResID = typedArray.getResourceId(R.styleable.DeleteEditText_ic_delete, R.drawable.delete);
         //根据资源ID 获取drawable
         ic_delete = getResources().getDrawable(ic_deleteResID);
         //设置图片大小
-        delete_x = typedArray.getInteger(R.styleable.deleteEditText_delete_x, 0);
-        delete_y = typedArray.getInteger(R.styleable.deleteEditText_delete_y, 0);
-        delete_width = typedArray.getInteger(R.styleable.deleteEditText_delete_width, 60);
-        delete_height = typedArray.getInteger(R.styleable.deleteEditText_delete_width, 60);
-        ic_delete.setBounds(delete_x, delete_y, delete_width, delete_height);
+        delete_x = (int) typedArray.getDimension(R.styleable.DeleteEditText_delete_x, dp2px(getContext(), 20f));
+        delete_y = (int) typedArray.getDimension(R.styleable.DeleteEditText_delete_y, dp2px(getContext(), 20f));
+        ic_delete.setBounds(0, 0, delete_x, delete_y);
+        visible = typedArray.getBoolean(R.styleable.DeleteEditText_delete_visible, true);
+        onlyShow = typedArray.getBoolean(R.styleable.DeleteEditText_delete_only_show, false);
+        //回收资源
+        typedArray.recycle();
+
+        if (onlyShow) {
+            setDeleteIconVisible(onlyShow);
+        }
     }
+
 
     @Override
     protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
+
         super.onTextChanged(text, start, lengthBefore, lengthAfter);
         /**
          * hasFocus()返回是否获得EditTEXT的焦点，即是否选中
          * setDeleteIconVisible（） = 根据传入的是否选中 & 是否有输入来判断是否显示删除图标
          */
-        setDeleteIconVisible(hasFocus() && text.length() > 0);
+        if (!onlyShow) {
+            setDeleteIconVisible(hasFocus() && text.length() > 0);
+        }
     }
 
 
@@ -75,11 +97,14 @@ public class DeleteEditText extends AppCompatEditText {
     @Override
     protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
         super.onFocusChanged(focused, direction, previouslyFocusedRect);
-        setDeleteIconVisible(hasFocus() && length() > 0);
+        if (!onlyShow) {
+            setDeleteIconVisible(hasFocus() && length() > 0);
+        }
+
     }
 
     private void setDeleteIconVisible(boolean deleteVisible) {
-        setCompoundDrawables(null, null, deleteVisible ? ic_delete : null, null);
+        setCompoundDrawables(null, null, deleteVisible && visible ? ic_delete : null, null);
         invalidate();
     }
 
@@ -102,7 +127,14 @@ public class DeleteEditText extends AppCompatEditText {
                     // getWidth() - getPaddingRight() - drawable.getBounds().width() = 删除图标左边缘的坐标 = X2
                     // 所以X1与X2之间的区域 = 删除图标的区域
                     // 当手指抬起的位置在删除图标的区域（X2=<event.getX() <=X1），即视为点击了删除图标 = 清空搜索框内容
-                    setText("");
+//                    setText("");
+
+                    if (clickDreawable != null) {
+                        isClick = !isClick;
+                        clickDreawable.onClickListener(isClick);
+                    } else {
+                        setText("");
+                    }
 
                 }
                 break;
@@ -111,4 +143,29 @@ public class DeleteEditText extends AppCompatEditText {
         }
         return super.onTouchEvent(event);
     }
+
+
+    public static int dp2px(Context context, float dpVal) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dpVal, context.getResources().getDisplayMetrics());
+    }
+
+
+    /**
+     * drawable图片点击事件
+     */
+    public interface ClickDrawable {
+
+        /**
+         * 点击图片
+         */
+        void onClickListener(boolean isClick);
+    }
+
+
+    public void setOnClickDreawable(ClickDrawable clickDreawable) {
+        this.clickDreawable = clickDreawable;
+    }
+
+
 }

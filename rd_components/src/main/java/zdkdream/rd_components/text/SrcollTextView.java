@@ -21,6 +21,7 @@ import java.util.logging.LogRecord;
 /**
  * @author CT on 2017/12/7.
  * @email 595171796@qq.com
+ * 文本垂直切换
  */
 
 public class SrcollTextView extends TextSwitcher implements ViewSwitcher.ViewFactory {
@@ -101,18 +102,19 @@ public class SrcollTextView extends TextSwitcher implements ViewSwitcher.ViewFac
 
     /**
      * 设置数据
+     *
      * @param list
      */
-    public void setTextList(ArrayList<String> list){
+    public void setTextList(ArrayList<String> list) {
         textList.clear();
         textList.addAll(list);
-        currentID=-1;
+        currentID = -1;
     }
 
     /**
      * 开始滚动
      */
-    public void startAutoSrcoll(){
+    public void startAutoSrcoll() {
         mHandler.sendEmptyMessage(FLAG_START_AUTO_SCROLL);
     }
 

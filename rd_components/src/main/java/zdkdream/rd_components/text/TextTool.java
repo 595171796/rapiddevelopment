@@ -501,6 +501,8 @@ public class TextTool {
             et.removeTextChangedListener(this);
             // et.setText方法可能会引起键盘变化,所以用editable.replace来显示内容
             s.replace(0, s.length(), inputStr.trim());
+            //设置新光标所在位置
+            et.setSelection(s.length());
             et.addTextChangedListener(this);
         }
 

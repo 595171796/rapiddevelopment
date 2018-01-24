@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="zdkdream.rd_components">
 
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <application>
         <activity android:name=".MainActivity"></activity>
     </application>

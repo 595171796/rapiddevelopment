@@ -23,6 +23,9 @@ import android.view.WindowManager.LayoutParams;
 
 import java.lang.reflect.Method;
 
+/**
+ * 对状态栏的操作
+ */
 public class SystemBarTintManager {
     public static final int DEFAULT_TINT_COLOR = -1728053248;
     private static String sNavBarOverride;
@@ -37,8 +40,8 @@ public class SystemBarTintManager {
     @TargetApi(19)
     public SystemBarTintManager(Activity activity) {
         Window win = activity.getWindow();
-        ViewGroup decorViewGroup = (ViewGroup)win.getDecorView();
-        if(VERSION.SDK_INT >= 19) {
+        ViewGroup decorViewGroup = (ViewGroup) win.getDecorView();
+        if (VERSION.SDK_INT >= 19) {
             int[] attrs = new int[]{16843759, 16843760};
             TypedArray a = activity.obtainStyledAttributes(attrs);
 
@@ -51,26 +54,26 @@ public class SystemBarTintManager {
 
             LayoutParams winParams = win.getAttributes();
             int bits = 67108864;
-            if((winParams.flags & bits) != 0) {
+            if ((winParams.flags & bits) != 0) {
                 this.mStatusBarAvailable = true;
             }
 
             bits = 134217728;
-            if((winParams.flags & bits) != 0) {
+            if ((winParams.flags & bits) != 0) {
                 this.mNavBarAvailable = true;
             }
         }
 
         this.mConfig = new SystemBarTintManager.SystemBarConfig(activity, this.mStatusBarAvailable, this.mNavBarAvailable);
-        if(!this.mConfig.hasNavigtionBar()) {
+        if (!this.mConfig.hasNavigtionBar()) {
             this.mNavBarAvailable = false;
         }
 
-        if(this.mStatusBarAvailable) {
+        if (this.mStatusBarAvailable) {
             this.setupStatusBarView(activity, decorViewGroup);
         }
 
-        if(this.mNavBarAvailable) {
+        if (this.mNavBarAvailable) {
             this.setupNavBarView(activity, decorViewGroup);
         }
 
@@ -78,16 +81,16 @@ public class SystemBarTintManager {
 
     public void setStatusBarTintEnabled(boolean enabled) {
         this.mStatusBarTintEnabled = enabled;
-        if(this.mStatusBarAvailable) {
-            this.mStatusBarTintView.setVisibility(enabled?0:8);
+        if (this.mStatusBarAvailable) {
+            this.mStatusBarTintView.setVisibility(enabled ? 0 : 8);
         }
 
     }
 
     public void setNavigationBarTintEnabled(boolean enabled) {
         this.mNavBarTintEnabled = enabled;
-        if(this.mNavBarAvailable) {
-            this.mNavBarTintView.setVisibility(enabled?0:8);
+        if (this.mNavBarAvailable) {
+            this.mNavBarTintView.setVisibility(enabled ? 0 : 8);
         }
 
     }
@@ -113,21 +116,21 @@ public class SystemBarTintManager {
     }
 
     public void setStatusBarTintColor(int color) {
-        if(this.mStatusBarAvailable) {
+        if (this.mStatusBarAvailable) {
             this.mStatusBarTintView.setBackgroundColor(color);
         }
 
     }
 
     public void setStatusBarTintResource(int res) {
-        if(this.mStatusBarAvailable) {
+        if (this.mStatusBarAvailable) {
             this.mStatusBarTintView.setBackgroundResource(res);
         }
 
     }
 
     public void setStatusBarTintDrawable(Drawable drawable) {
-        if(this.mStatusBarAvailable) {
+        if (this.mStatusBarAvailable) {
             this.mStatusBarTintView.setBackgroundDrawable(drawable);
         }
 
@@ -135,28 +138,28 @@ public class SystemBarTintManager {
 
     @TargetApi(11)
     public void setStatusBarAlpha(float alpha) {
-        if(this.mStatusBarAvailable && VERSION.SDK_INT >= 11) {
+        if (this.mStatusBarAvailable && VERSION.SDK_INT >= 11) {
             this.mStatusBarTintView.setAlpha(alpha);
         }
 
     }
 
     public void setNavigationBarTintColor(int color) {
-        if(this.mNavBarAvailable) {
+        if (this.mNavBarAvailable) {
             this.mNavBarTintView.setBackgroundColor(color);
         }
 
     }
 
     public void setNavigationBarTintResource(int res) {
-        if(this.mNavBarAvailable) {
+        if (this.mNavBarAvailable) {
             this.mNavBarTintView.setBackgroundResource(res);
         }
 
     }
 
     public void setNavigationBarTintDrawable(Drawable drawable) {
-        if(this.mNavBarAvailable) {
+        if (this.mNavBarAvailable) {
             this.mNavBarTintView.setBackgroundDrawable(drawable);
         }
 
@@ -164,7 +167,7 @@ public class SystemBarTintManager {
 
     @TargetApi(11)
     public void setNavigationBarAlpha(float alpha) {
-        if(this.mNavBarAvailable && VERSION.SDK_INT >= 11) {
+        if (this.mNavBarAvailable && VERSION.SDK_INT >= 11) {
             this.mNavBarTintView.setAlpha(alpha);
         }
 
@@ -186,7 +189,7 @@ public class SystemBarTintManager {
         this.mStatusBarTintView = new View(context);
         android.widget.FrameLayout.LayoutParams params = new android.widget.FrameLayout.LayoutParams(-1, this.mConfig.getStatusBarHeight());
         params.gravity = 48;
-        if(this.mNavBarAvailable && !this.mConfig.isNavigationAtBottom()) {
+        if (this.mNavBarAvailable && !this.mConfig.isNavigationAtBottom()) {
             params.rightMargin = this.mConfig.getNavigationBarWidth();
         }
 
@@ -199,7 +202,7 @@ public class SystemBarTintManager {
     private void setupNavBarView(Context context, ViewGroup decorViewGroup) {
         this.mNavBarTintView = new View(context);
         android.widget.FrameLayout.LayoutParams params;
-        if(this.mConfig.isNavigationAtBottom()) {
+        if (this.mConfig.isNavigationAtBottom()) {
             params = new android.widget.FrameLayout.LayoutParams(-1, this.mConfig.getNavigationBarHeight());
             params.gravity = 80;
         } else {
@@ -214,12 +217,12 @@ public class SystemBarTintManager {
     }
 
     static {
-        if(VERSION.SDK_INT >= 19) {
+        if (VERSION.SDK_INT >= 19) {
             try {
                 Class c = Class.forName("android.os.SystemProperties");
                 Method m = c.getDeclaredMethod("get", new Class[]{String.class});
                 m.setAccessible(true);
-                sNavBarOverride = (String)m.invoke((Object)null, new Object[]{"qemu.hw.mainkeys"});
+                sNavBarOverride = (String) m.invoke((Object) null, new Object[]{"qemu.hw.mainkeys"});
             } catch (Throwable var2) {
                 sNavBarOverride = null;
             }
@@ -259,7 +262,7 @@ public class SystemBarTintManager {
         @TargetApi(14)
         private int getActionBarHeight(Context context) {
             int result = 0;
-            if(VERSION.SDK_INT >= 14) {
+            if (VERSION.SDK_INT >= 14) {
                 TypedValue tv = new TypedValue();
                 context.getTheme().resolveAttribute(16843499, tv, true);
                 result = context.getResources().getDimensionPixelSize(tv.resourceId);
@@ -272,9 +275,9 @@ public class SystemBarTintManager {
         private int getNavigationBarHeight(Context context) {
             Resources res = context.getResources();
             int result = 0;
-            if(VERSION.SDK_INT >= 14 && this.hasNavBar(context)) {
+            if (VERSION.SDK_INT >= 14 && this.hasNavBar(context)) {
                 String key;
-                if(this.mInPortrait) {
+                if (this.mInPortrait) {
                     key = "navigation_bar_height";
                 } else {
                     key = "navigation_bar_height_landscape";
@@ -290,18 +293,18 @@ public class SystemBarTintManager {
         private int getNavigationBarWidth(Context context) {
             Resources res = context.getResources();
             int result = 0;
-            return VERSION.SDK_INT >= 14 && this.hasNavBar(context)?this.getInternalDimensionSize(res, "navigation_bar_width"):result;
+            return VERSION.SDK_INT >= 14 && this.hasNavBar(context) ? this.getInternalDimensionSize(res, "navigation_bar_width") : result;
         }
 
         @TargetApi(14)
         private boolean hasNavBar(Context context) {
             Resources res = context.getResources();
             int resourceId = res.getIdentifier("config_showNavigationBar", "bool", "android");
-            if(resourceId != 0) {
+            if (resourceId != 0) {
                 boolean hasNav = res.getBoolean(resourceId);
-                if("1".equals(SystemBarTintManager.sNavBarOverride)) {
+                if ("1".equals(SystemBarTintManager.sNavBarOverride)) {
                     hasNav = false;
-                } else if("0".equals(SystemBarTintManager.sNavBarOverride)) {
+                } else if ("0".equals(SystemBarTintManager.sNavBarOverride)) {
                     hasNav = true;
                 }
 
@@ -314,7 +317,7 @@ public class SystemBarTintManager {
         private int getInternalDimensionSize(Resources res, String key) {
             int result = 0;
             int resourceId = res.getIdentifier(key, "dimen", "android");
-            if(resourceId > 0) {
+            if (resourceId > 0) {
                 result = res.getDimensionPixelSize(resourceId);
             }
 
@@ -324,14 +327,14 @@ public class SystemBarTintManager {
         @SuppressLint({"NewApi"})
         private float getSmallestWidthDp(Activity activity) {
             DisplayMetrics metrics = new DisplayMetrics();
-            if(VERSION.SDK_INT >= 16) {
+            if (VERSION.SDK_INT >= 16) {
                 activity.getWindowManager().getDefaultDisplay().getRealMetrics(metrics);
             } else {
                 activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
             }
 
-            float widthDp = (float)metrics.widthPixels / metrics.density;
-            float heightDp = (float)metrics.heightPixels / metrics.density;
+            float widthDp = (float) metrics.widthPixels / metrics.density;
+            float heightDp = (float) metrics.heightPixels / metrics.density;
             return Math.min(widthDp, heightDp);
         }
 
@@ -360,15 +363,15 @@ public class SystemBarTintManager {
         }
 
         public int getPixelInsetTop(boolean withActionBar) {
-            return (this.mTranslucentStatusBar?this.mStatusBarHeight:0) + (withActionBar?this.mActionBarHeight:0);
+            return (this.mTranslucentStatusBar ? this.mStatusBarHeight : 0) + (withActionBar ? this.mActionBarHeight : 0);
         }
 
         public int getPixelInsetBottom() {
-            return this.mTranslucentNavBar && this.isNavigationAtBottom()?this.mNavigationBarHeight:0;
+            return this.mTranslucentNavBar && this.isNavigationAtBottom() ? this.mNavigationBarHeight : 0;
         }
 
         public int getPixelInsetRight() {
-            return this.mTranslucentNavBar && !this.isNavigationAtBottom()?this.mNavigationBarWidth:0;
+            return this.mTranslucentNavBar && !this.isNavigationAtBottom() ? this.mNavigationBarWidth : 0;
         }
     }
 }
