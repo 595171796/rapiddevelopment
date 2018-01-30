@@ -145,7 +145,6 @@ public class StatusBarTool {
     /**
      * 修改状态栏为全透明
      */
-
     public static void setTransparentBar(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = activity.getWindow();
@@ -177,9 +176,9 @@ public class StatusBarTool {
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //使用SystemBarTint类来改变状态栏变色，需要先将状态栏设置为透明
             setTransparentBar(activity);
-            SystemBarTintManager tintManager = new SystemBarTintManager(activity);
-            tintManager.setStatusBarTintEnabled(true);
-            tintManager.setStatusBarTintResource(colorId);
+                SystemBarTintManager tintManager = new SystemBarTintManager(activity);
+                tintManager.setStatusBarTintEnabled(true);
+                tintManager.setStatusBarTintResource(colorId);
         }
     }
 

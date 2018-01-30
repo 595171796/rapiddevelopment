@@ -45,46 +45,45 @@ import zdkdream.rd_components.R;
 
 
 /**
- *  <LinearLayout
- android:id="@+id/needdetails_item_linear2"
- android:layout_width="match_parent"
- android:layout_height="wrap_content"
- android:layout_alignLeft="@id/needdetails_item_linear1"
- android:layout_below="@id/needdetails_item_linear1"
- android:layout_marginBottom="@dimen/dp_6"
- android:layout_marginTop="@dimen/dp_6">
-
- 外层必须为LinearLayout
- <com.example.qingchen.buildapp.view.ExpandableTextView
- android:id="@+id/expand_text_view"
- android:layout_width="match_parent"
- android:layout_height="wrap_content"
- android:orientation="vertical"
- app:animAlphaStart="1"
- app:animDuration="200"
- app:maxCollapsedLines="2">
-
- <TextView
- android:id="@+id/expandable_text"
- android:layout_width="match_parent"
- android:layout_height="wrap_content"
- android:textSize="12sp" />
-
- <Button
- android:id="@id/expand_collapse"
- android:layout_width="wrap_content"
- android:layout_height="@dimen/dp_18"
- android:layout_gravity="right|bottom"
- android:background="@android:color/transparent"
- android:gravity="center"
- android:paddingBottom="@dimen/dp_2"
- android:paddingTop="@dimen/dp_2"
- android:textColor="@color/TextBackgroundOrange" />
-
- </com.example.qingchen.buildapp.view.ExpandableTextView>
-
- </LinearLayout>
-
+ * <LinearLayout
+ * android:id="@+id/needdetails_item_linear2"
+ * android:layout_width="match_parent"
+ * android:layout_height="wrap_content"
+ * android:layout_alignLeft="@id/needdetails_item_linear1"
+ * android:layout_below="@id/needdetails_item_linear1"
+ * android:layout_marginBottom="@dimen/dp_6"
+ * android:layout_marginTop="@dimen/dp_6">
+ * <p>
+ * 外层必须为LinearLayout
+ * <com.example.qingchen.buildapp.view.ExpandableTextView
+ * android:id="@+id/expand_text_view"
+ * android:layout_width="match_parent"
+ * android:layout_height="wrap_content"
+ * android:orientation="vertical"
+ * app:animAlphaStart="1"
+ * app:animDuration="200"
+ * app:maxCollapsedLines="2">
+ * <p>
+ * <TextView
+ * android:id="@+id/expandable_text"
+ * android:layout_width="match_parent"
+ * android:layout_height="wrap_content"
+ * android:textSize="12sp" />
+ * <p>
+ * <Button
+ * android:id="@id/expand_collapse"
+ * android:layout_width="wrap_content"
+ * android:layout_height="@dimen/dp_18"
+ * android:layout_gravity="right|bottom"
+ * android:background="@android:color/transparent"
+ * android:gravity="center"
+ * android:paddingBottom="@dimen/dp_2"
+ * android:paddingTop="@dimen/dp_2"
+ * android:textColor="@color/TextBackgroundOrange" />
+ * <p>
+ * </com.example.qingchen.buildapp.view.ExpandableTextView>
+ * <p>
+ * </LinearLayout>
  */
 
 
@@ -326,11 +325,11 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
         mCollapseDrawable = typedArray.getDrawable(R.styleable.ExpandableTextView_collapseDrawable);
 
         if (mExpandDrawable == null) {
-            mExpandDrawable = getDrawable(getContext(), R.drawable.ic_expand_small_holo_light);
+            mExpandDrawable = getDrawable(getContext(), R.drawable.expandable_down_arrow);
             mExpandDrawable.setBounds(0, 0, dp2px(getContext(), 10), dp2px(getContext(), 6));
         }
         if (mCollapseDrawable == null) {
-            mCollapseDrawable = getDrawable(getContext(), R.drawable.ic_collapse_small_holo_light);
+            mCollapseDrawable = getDrawable(getContext(), R.drawable.expandable_up_arrow);
             mCollapseDrawable.setBounds(0, 0, dp2px(getContext(), 10), dp2px(getContext(), 6));
         }
 

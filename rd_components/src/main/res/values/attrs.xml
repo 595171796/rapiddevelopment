@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--带删除的EditText-->
     <declare-styleable name="DeleteEditText">
         <attr name="ic_delete" format="reference" />
         <attr name="delete_x" format="dimension" />
         <attr name="delete_y" format="dimension" />
         <attr name="delete_visible" format="boolean" />
         <attr name="delete_only_show" format="boolean" />
+        <attr name="drawable_color" format="color"/>
     </declare-styleable>
 
     <!--Tag标签-->

@@ -1,4 +1,4 @@
-package zdkdream.rapiddevelopment;
+package zdkdream.rd_components.inputsoft;
 
 import android.app.Activity;
 import android.graphics.Rect;

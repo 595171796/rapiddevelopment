@@ -1,4 +1,4 @@
-package zdkdream.rd_components.tools;
+package zdkdream.rd_components.inputsoft;
 
 import android.app.Activity;
 import android.app.Service;

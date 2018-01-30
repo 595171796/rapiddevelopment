@@ -1,4 +1,4 @@
-package zdkdream.rapiddevelopment;
+package zdkdream.rd_components.inputsoft;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,7 +14,6 @@ import android.widget.FrameLayout;
  * @author CT on 2018/1/24.
  * @email 595171796@qq.com
  */
-
 public class KeyboardLayout extends FrameLayout {
 
     private KeyboardLayoutListener mListener;
@@ -101,6 +100,4 @@ public class KeyboardLayout extends FrameLayout {
             }
         }
     }
-
-
 }
