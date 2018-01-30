@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<dimen name="dp_40">80.00dp</dimen>
+	<dimen name="dp_8">16.00dp</dimen>
+	<dimen name="dp_10">20.00dp</dimen>
+	<dimen name="dp_120">240.00dp</dimen>
+	<dimen name="dp_4">8.00dp</dimen>
+	<dimen name="dp_6">12.00dp</dimen>
+	<dimen name="dp_47">94.00dp</dimen>
+	<dimen name="dp_20">40.00dp</dimen>
+	<dimen name="dp_15">30.00dp</dimen>
+	<dimen name="dp_50">100.00dp</dimen>
+	<dimen name="dp_14">28.00dp</dimen>
+	<dimen name="dp_200">400.00dp</dimen>
+</resources>
