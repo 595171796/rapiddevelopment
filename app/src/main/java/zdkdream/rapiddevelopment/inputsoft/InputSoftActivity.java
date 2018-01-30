@@ -1,7 +1,7 @@
 package zdkdream.rapiddevelopment.inputsoft;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.view.View;
 
 import zdkdream.rapiddevelopment.R;
 import zdkdream.rapiddevelopment.databinding.ActivityInputSoftBinding;
@@ -18,26 +18,28 @@ import zdkdream.rd_components.inputsoft.SoftKeyInputHidWidget;
 public class InputSoftActivity extends BaseActivity<ActivityInputSoftBinding> {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //不显示状态栏
-//        useTransStatusBar = true;
-        setContentView(R.layout.activity_input_soft);
-        //隐藏toolbar
-        setToolbarGone();
-        setmTbTilteText("登录");
+    protected int getLayoutId() {
+        return R.layout.activity_input_soft;
+    }
 
-
-        //监听输入法弹出
-        addInputLinstener();
+    @Override
+    protected void initData() {
 
     }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        //监听输入法弹出
+        addInputLinstener();
+    }
+
 
     private void addInputLinstener() {
 
         bindingView.inputSoftKeyboard.setKeyboardListener(new KeyboardLayout.KeyboardLayoutListener() {
             @Override
             public void onKeyboardStateChanged(boolean isActive, int keyboardHeight) {
+                //输入法打开
                 if (isActive) {
                     scrollToBottom();
                 }
@@ -53,5 +55,10 @@ public class InputSoftActivity extends BaseActivity<ActivityInputSoftBinding> {
                 bindingView.inputSoftScroll.smoothScrollTo(0, bindingView.inputSoftScroll.getBottom() + SoftKeyInputHidWidget.getStatusBarHeight(InputSoftActivity.this));
             }
         }, 100);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

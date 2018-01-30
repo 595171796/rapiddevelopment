@@ -1,13 +1,11 @@
 package zdkdream.rapiddevelopment.mydata;
 
-import android.support.v4.app.ActivityCompat;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import zdkdream.rapiddevelopment.R;
 import zdkdream.rapiddevelopment.inputsoft.InputSoftActivity;
-import zdkdream.rapiddevelopment.newbase_activity.BaseApplication;
 
 /**
  * @author CT on 2018/1/26.

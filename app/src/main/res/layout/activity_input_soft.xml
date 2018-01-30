@@ -1,96 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <zdkdream.rd_components.inputsoft.KeyboardLayout
-        android:id="@+id/input_soft_keyboard"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="false"
-        >
+        android:background="@drawable/input_bg"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
 
-        <ScrollView
-            android:id="@+id/input_soft_scroll"
+        <zdkdream.rd_components.inputsoft.KeyboardLayout
+            android:id="@+id/input_soft_keyboard"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
 
-            <LinearLayout
+            >
+
+            <ScrollView
+                android:id="@+id/input_soft_scroll"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
-                    android:layout_marginTop="200dp"
-                    android:background="@drawable/login_input_field_icon"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
-                        android:background="@drawable/login_yonghuming_icon" />
+                        android:layout_marginLeft="@dimen/dp_50"
+                        android:layout_marginRight="@dimen/dp_50"
+                        android:layout_marginTop="@dimen/dp_200"
+                        android:background="#504169e1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/dp_14"
+                        android:paddingTop="@dimen/dp_14">
 
-                    <EditText
-                        android:id="@+id/input_soft_username"
-                        style="@style/editext_input_style"
-                        android:layout_marginLeft="@dimen/dp_40"
-                        android:layout_marginRight="20dp"
-                        android:background="@null"
-                        android:imeOptions="actionNext"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@android:color/white">
+                        <ImageView
+                            android:layout_width="@dimen/dp_20"
+                            android:layout_height="@dimen/dp_20"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/dp_20"
+                            android:background="@drawable/login_yonghuming_icon" />
 
-                        <requestFocus />
-                    </EditText>
-                </LinearLayout>
+                        <zdkdream.rd_components.text.DeleteEditText
+                            android:id="@+id/input_soft_username"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/dp_20"
+                            android:layout_marginRight="@dimen/dp_20"
+                            android:background="@null"
+                            android:gravity="center_vertical"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:textColor="@android:color/white"
+                            android:textColorHint="@android:color/white"
+                            app:delete_x="@dimen/dp_15"
+                            app:delete_y="@dimen/dp_15" />
+
+                    </LinearLayout>
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/login_input_field_icon"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
-                        android:background="@drawable/login_mima_icon" />
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"
+                        android:layout_marginTop="20dp"
+                        android:background="#504169e1"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/dp_14"
+                        android:paddingTop="@dimen/dp_14">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_20"
+                            android:layout_height="@dimen/dp_20"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/dp_20"
+                            android:background="@drawable/login_mima_icon" />
 
 
-                    <EditText
-                        android:id="@+id/input_soft_password"
-                        style="@style/editext_input_style"
-                        android:layout_marginLeft="40dp"
-                        android:layout_marginRight="20dp"
-                        android:background="@null"
-                        android:imeOptions="actionDone"
-                        android:inputType="textPassword"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@android:color/white" />
+                        <zdkdream.rd_components.text.DeleteEditText
+                            android:id="@+id/input_soft_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/dp_20"
+                            android:layout_marginRight="@dimen/dp_20"
+                            android:background="@null"
+                            android:gravity="center_vertical"
+                            android:imeOptions="actionDone"
+                            android:inputType="textPassword"
+                            android:singleLine="true"
+                            android:textColor="@android:color/white"
+                            android:textColorHint="@android:color/white"
+                            app:delete_x="@dimen/dp_15"
+                            app:delete_y="@dimen/dp_15" />
 
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/input_soft_login_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_50"
+                        android:layout_marginLeft="@dimen/dp_50"
+                        android:layout_marginRight="@dimen/dp_50"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:background="@color/white"
+                        android:text="登录"
+                        android:textColor="@color/cadetblue"
+                        android:textSize="16sp" />
                 </LinearLayout>
+            </ScrollView>
+        </zdkdream.rd_components.inputsoft.KeyboardLayout>
 
-                <Button
-                    android:id="@+id/input_soft_login_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/login_button_bg_icon"
-                    android:text="登录"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="16sp" />
-            </LinearLayout>
-        </ScrollView>
-    </zdkdream.rd_components.inputsoft.KeyboardLayout>
+    </LinearLayout>
+
 </layout>

@@ -18,37 +18,41 @@ import zdkdream.rd_components.tools.StartActivityTool;
 public class MainActivity extends BaseActivity<ActivityMainBinding> implements AdapterView.OnItemClickListener {
 
 
-    private List<MainGridData> dataList;
+    private List<MainGridData> dataList = GetGridData.getData();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //不设置为透明状态栏
-        useTransStatusBar = false;
-        setContentView(R.layout.activity_main);
-        //设置不显示左边图片
-        setTbLiftImageGone();
-        //设置title
-        setmTbTilteText("技术盒子", 18, R.color.white);
-
-        dataList = GetGridData.getData();
-
-        //初始类容
-        initView();
+    protected int getLayoutId() {
+        return R.layout.activity_main;
     }
 
+    @Override
+    protected void initData() {
 
-    /**
-     * 处理View
-     */
-    private void initView() {
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        //处理toolbar
+        bindingView.mainToolbar.mainToolbarTitle.setText("技术盒子");
+        bindingView.mainToolbar.mainToolbarLimage.setVisibility(View.GONE);
+        bindingView.mainToolbar.mainToolbar.setContentInsetsAbsolute(0, 0);
+        setSupportActionBar(bindingView.mainToolbar.mainToolbar);
+
+
         MainGridAdapter adapter = new MainGridAdapter(dataList);
         bindingView.mainGridview.setAdapter(adapter);
         bindingView.mainGridview.setOnItemClickListener(this);
+
     }
+
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         StartActivityTool.startToActivity(this, (Class) dataList.get(position).getOpenActivity());
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

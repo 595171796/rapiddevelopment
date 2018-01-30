@@ -20,6 +20,7 @@
 
         </activity>
         <activity
+            android:theme="@style/ActivityStatus"
             android:name=".inputsoft.InputSoftActivity"
             android:launchMode="singleTop">
 
